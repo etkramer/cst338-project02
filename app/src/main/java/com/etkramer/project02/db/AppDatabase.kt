@@ -13,7 +13,7 @@ abstract class AppDatabase : RoomDatabase() {
         private var instance: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase =
-            instance ?: Room.databaseBuilder(context, AppDatabase::class.java, AppDatabase::class.simpleName)
-                    .build().also { instance = it }
+            instance ?: Room.databaseBuilder(context, AppDatabase::class.java, "app-database")
+                .build().also { instance = it }
     }
 }
