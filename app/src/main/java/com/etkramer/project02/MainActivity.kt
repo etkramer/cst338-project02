@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.etkramer.project02.databinding.ActivityMainBinding
-import com.etkramer.project02.db.AppDatabase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -19,8 +18,6 @@ class MainActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             startActivity(LoginActivity.getIntent(this))
         }
-
-        val db = AppDatabase.getInstance(this)
     }
 
     companion object {
