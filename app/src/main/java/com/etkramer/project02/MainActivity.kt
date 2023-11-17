@@ -3,6 +3,7 @@ package com.etkramer.project02
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.etkramer.project02.databinding.ActivityMainBinding
+import com.etkramer.project02.db.AppDatabase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -12,5 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val db = AppDatabase.getInstance(this)
     }
 }
