@@ -12,8 +12,28 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         private var instance: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase =
-            instance ?: Room.databaseBuilder(context, AppDatabase::class.java, "app-database")
-                .build().also { instance = it }
+        fun getInstance(context: Context): AppDatabase {
+            if (instance == null) {
+                // Build new db.
+                val db = Room.databaseBuilder(context, AppDatabase::class.java, "app-database")
+                    .allowMainThreadQueries()
+                    .build()
+
+                // Delete any existing users
+                db.userDao().deleteAll()
+
+                val user1 = User(0, false, "testuser1", "testuser1")
+                val admin1 = User(0, true, "admin2", "admin2")
+
+                // Insert seed users into db
+                db.userDao().insert(user1)
+                db.userDao().insert(admin1)
+
+                instance = db
+                return db.also { instance = db }
+            }
+
+            return instance as AppDatabase
+        }
     }
 }

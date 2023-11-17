@@ -21,4 +21,7 @@ data class User (
 interface UserDao {
     @Insert
     fun insert(user: User)
+
+    @Query("DELETE FROM User")
+    fun deleteAll()
 }
