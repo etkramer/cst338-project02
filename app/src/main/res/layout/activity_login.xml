@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
         
         <com.google.android.material.textfield.TextInputLayout
-            android:hint="Username"
+            android:hint="@string/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
@@ -27,8 +27,12 @@
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"/>
+
         <com.google.android.material.textfield.TextInputLayout
-            android:hint="Password"
+            android:hint="@string/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
@@ -38,8 +42,12 @@
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"/>
+
         <Button
-            android:text="Submit"
+            android:text="@string/submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
