@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (Prefs.getPrefs(this).getString(USERNAME_KEY, null) != null) { // Already logged in
+            startActivity(LandingActivity.getIntent(this))
+        }
+
         binding.loginButton.setOnClickListener {
             startActivity(LoginActivity.getIntent(this))
         }

@@ -33,6 +33,14 @@ class LoginActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Login successful!", Toast.LENGTH_LONG)
                 .show()
+
+            // Store username
+            with (Prefs.getPrefs(this).edit()) {
+                putString("USERNAME_KEY", username)
+                apply()
+            }
+
+            startActivity(LandingActivity.getIntent(this))
         }
     }
 
