@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import kotlin.random.Random
 
 @Database(entities = [User::class, Product::class, UserProductEdge::class], version = 5)
 abstract class AppDatabase : RoomDatabase() {
