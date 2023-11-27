@@ -80,22 +80,22 @@ abstract class AppDatabase : RoomDatabase() {
             for (username in arrayOf("testuser1", "admin2")) {
                 db.userProductEdgeDao().insert(UserProductEdge(0,
                     db.userDao().findByName(username)?.id ?: -1,
-                    db.productDao().findByName("Product 4")?.id ?: -1,
+                    db.productDao().findByName("Chair")?.id ?: -1,
                     true))
 
                 db.userProductEdgeDao().insert(UserProductEdge(0,
                     db.userDao().findByName(username)?.id ?: -1,
-                    db.productDao().findByName("Product 8")?.id ?: -1,
+                    db.productDao().findByName("Glasses")?.id ?: -1,
                     true))
 
                 db.userProductEdgeDao().insert(UserProductEdge(0,
                     db.userDao().findByName(username)?.id ?: -1,
-                    db.productDao().findByName("Product 9")?.id ?: -1,
+                    db.productDao().findByName("Pencil")?.id ?: -1,
                     true))
 
                 db.userProductEdgeDao().insert(UserProductEdge(0,
                     db.userDao().findByName(username)?.id ?: -1,
-                    db.productDao().findByName("Product 2")?.id ?: -1,
+                    db.productDao().findByName("Keyboard")?.id ?: -1,
                     false))
             }
         }
