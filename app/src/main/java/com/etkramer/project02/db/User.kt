@@ -21,4 +21,13 @@ data class User (
 interface UserDao {
     @Insert
     fun insert(user: User)
+
+    @Query("SELECT * FROM User WHERE id = :id")
+    fun userById(id: String): User?
+
+    @Query("SELECT * FROM User WHERE username = :username")
+    fun userByName(username: String): User?
+
+    @Query("DELETE FROM User")
+    fun deleteAll()
 }
