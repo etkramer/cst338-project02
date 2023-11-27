@@ -5,6 +5,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.etkramer.project02.adapters.LandingItemAdapter
 import com.etkramer.project02.databinding.ActivityLandingBinding
 import com.etkramer.project02.db.AppDatabase
 
@@ -43,6 +46,9 @@ class LandingActivity : AppCompatActivity() {
         binding.cartButton.setOnClickListener {
             // TODO: Impl
         }
+
+        val products = db.productDao().getAll()
+        binding.productRecycler.adapter = LandingItemAdapter(this, products)
     }
 
     companion object {

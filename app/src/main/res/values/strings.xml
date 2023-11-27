@@ -7,4 +7,6 @@
     <string name="submit">Submit</string>
     <string name="logout">Log out</string>
     <string name="cart">View cart</string>
+    <string name="add_cart">Add to Cart</string>
+    <string name="delete">Delete (admin)</string>
 </resources>
