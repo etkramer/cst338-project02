@@ -1,6 +1,7 @@
 package com.etkramer.project02.db
 
 import android.content.Context
+import android.content.res.Resources.NotFoundException
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -79,23 +80,23 @@ abstract class AppDatabase : RoomDatabase() {
             // Insert seed edges into db
             for (username in arrayOf("testuser1", "admin2")) {
                 db.userProductEdgeDao().insert(UserProductEdge(0,
-                    db.userDao().findByName(username)?.id ?: -1,
-                    db.productDao().findByName("Chair")?.id ?: -1,
+                    db.userDao().findByName(username)?.id ?: throw NotFoundException(),
+                    db.productDao().findByName("Chair")?.id ?: throw NotFoundException(),
                     true))
 
                 db.userProductEdgeDao().insert(UserProductEdge(0,
-                    db.userDao().findByName(username)?.id ?: -1,
-                    db.productDao().findByName("Glasses")?.id ?: -1,
+                    db.userDao().findByName(username)?.id ?: throw NotFoundException(),
+                    db.productDao().findByName("Glasses")?.id ?: throw NotFoundException(),
                     true))
 
                 db.userProductEdgeDao().insert(UserProductEdge(0,
-                    db.userDao().findByName(username)?.id ?: -1,
-                    db.productDao().findByName("Pencil")?.id ?: -1,
+                    db.userDao().findByName(username)?.id ?: throw NotFoundException(),
+                    db.productDao().findByName("Pencil")?.id ?: throw NotFoundException(),
                     true))
 
                 db.userProductEdgeDao().insert(UserProductEdge(0,
-                    db.userDao().findByName(username)?.id ?: -1,
-                    db.productDao().findByName("Keyboard")?.id ?: -1,
+                    db.userDao().findByName(username)?.id ?: throw NotFoundException(),
+                    db.productDao().findByName("Keyboard")?.id ?: throw NotFoundException(),
                     false))
             }
         }
