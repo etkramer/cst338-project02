@@ -6,7 +6,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [User::class, Product::class, UserProductEdge::class], version = 5)
+@Database(entities = [User::class, Product::class, UserProductEdge::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun productDao(): ProductDao
@@ -20,7 +20,6 @@ abstract class AppDatabase : RoomDatabase() {
                 // Build new db.
                 val db = Room.databaseBuilder(context, AppDatabase::class.java, "app-database")
                     .allowMainThreadQueries()
-                    .fallbackToDestructiveMigration()
                     .build()
 
                 seedUsers(db)
