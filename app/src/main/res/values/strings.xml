@@ -6,4 +6,5 @@
     <string name="password">Password</string>
     <string name="submit">Submit</string>
     <string name="logout">Log out</string>
+    <string name="cart">View cart</string>
 </resources>

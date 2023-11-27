@@ -25,7 +25,7 @@ class LandingActivity : AppCompatActivity() {
 
         if (user != null) {
             binding.usernameDisplay.text =
-                "Username: ${user.username} (${if(user.isAdmin) "admin" else "not admin"})"
+                "Logged in: ${user.username} (${if(user.isAdmin) "admin" else "not admin"})"
         }
 
         binding.logoutButton.setOnClickListener {
