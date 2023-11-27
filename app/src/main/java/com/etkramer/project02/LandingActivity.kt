@@ -21,11 +21,13 @@ class LandingActivity : AppCompatActivity() {
         val db = AppDatabase.getInstance(this)
 
         val username = Prefs.getPrefs(this).getString(USERNAME_KEY, null)
-        val user = db.userDao().userByName(username as String)
+        val user = db.userDao().findByName(username as String)
 
         if (user != null) {
             binding.usernameDisplay.text =
                 "Logged in: ${user.username} (${if(user.isAdmin) "admin" else "not admin"})"
+
+            binding.balanceDisplay.text = "Balance: $${user.balance}"
         }
 
         binding.logoutButton.setOnClickListener {
@@ -36,6 +38,10 @@ class LandingActivity : AppCompatActivity() {
             }
 
             startActivity(MainActivity.getIntent(this))
+        }
+
+        binding.cartButton.setOnClickListener {
+            // TODO: Impl
         }
     }
 

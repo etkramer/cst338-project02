@@ -1,7 +1,6 @@
 package com.etkramer.project02.db
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.PrimaryKey
@@ -14,7 +13,9 @@ data class User (
 
     val isAdmin: Boolean,
     val username: String,
-    val password: String
+    val password: String,
+
+    val balance: Int
 )
 
 @Dao
@@ -23,10 +24,10 @@ interface UserDao {
     fun insert(user: User)
 
     @Query("SELECT * FROM User WHERE id = :id")
-    fun userById(id: String): User?
+    fun findById(id: String): User?
 
     @Query("SELECT * FROM User WHERE username = :username")
-    fun userByName(username: String): User?
+    fun findByName(username: String): User?
 
     @Query("DELETE FROM User")
     fun deleteAll()
