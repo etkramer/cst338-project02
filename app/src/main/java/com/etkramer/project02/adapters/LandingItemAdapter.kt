@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.etkramer.project02.R
 import com.etkramer.project02.db.AppDatabase
 import com.etkramer.project02.db.Product
+import com.etkramer.project02.db.UserProductEdge
 
 @SuppressLint("NotifyDataSetChanged")
 class LandingItemAdapter(private val context: Context, private val data: LiveData<List<Product>>) : RecyclerView.Adapter<LandingItemAdapter.ItemViewHolder>() {
@@ -56,7 +57,15 @@ class LandingItemAdapter(private val context: Context, private val data: LiveDat
         }
 
         holder.addCartButton.setOnClickListener {
-            // TODO: Create/update UserProductEdge
+            val currentUser = db.getCurrentUserOrNull(context)
+            if (item == null || currentUser == null) {
+                return@setOnClickListener
+            }
+
+            val existingEdge = db.userProductEdgeDao().findWithIds(currentUser.id, item.id)
+                ?: UserProductEdge(0, currentUser.id, item.id, true)
+
+            db.userProductEdgeDao().insert(existingEdge.copy(isInCart = true))
         }
     }
 

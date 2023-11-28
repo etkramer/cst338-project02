@@ -4,8 +4,10 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Entity
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
 import androidx.room.Query
+import androidx.room.Update
 
 @Entity
 data class UserProductEdge (
@@ -19,11 +21,17 @@ data class UserProductEdge (
 
 @Dao
 interface UserProductEdgeDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(userProductEdge: UserProductEdge)
+
+    @Update
+    fun update(userProductEdge: UserProductEdge)
 
     @Query("SELECT * FROM UserProductEdge WHERE id = :id")
     fun findById(id: String): UserProductEdge?
+
+    @Query("SELECT * FROM UserProductEdge WHERE userId = :userId AND productId = :productId")
+    fun findWithIds(userId: Int, productId: Int): UserProductEdge?
 
     @Query("DELETE FROM UserProductEdge")
     fun deleteAll()
