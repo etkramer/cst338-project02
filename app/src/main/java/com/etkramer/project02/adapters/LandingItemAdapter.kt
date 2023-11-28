@@ -40,6 +40,7 @@ class LandingItemAdapter(private val context: Context, private val data: LiveDat
         return ItemViewHolder(adapterLayout)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = data.value?.get(position)
         holder.nameText.text = item?.name ?: "null"
@@ -56,16 +57,23 @@ class LandingItemAdapter(private val context: Context, private val data: LiveDat
             }
         }
 
-        holder.addCartButton.setOnClickListener {
-            val currentUser = db.getCurrentUserOrNull(context)
-            if (item == null || currentUser == null) {
-                return@setOnClickListener
-            }
+        val currentUser = db.getCurrentUserOrNull(context)
+        val isInCart = db.userProductEdgeDao().findWithIds(currentUser?.id as Int, item?.id as Int)?.isInCart ?: false
 
+        if (isInCart) {
+            holder.addCartButton.isEnabled = false
+            holder.addCartButton.text = "Already in cart"
+        } else {
+            holder.addCartButton.isEnabled = true
+            holder.addCartButton.text = "Add to Cart"
+        }
+
+        holder.addCartButton.setOnClickListener {
             val existingEdge = db.userProductEdgeDao().findWithIds(currentUser.id, item.id)
                 ?: UserProductEdge(0, currentUser.id, item.id, true)
 
             db.userProductEdgeDao().insert(existingEdge.copy(isInCart = true))
+            this.notifyItemChanged(position)
         }
     }
 
