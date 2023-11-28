@@ -15,8 +15,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userProductEdgeDao(): UserProductEdgeDao
 
     fun getCurrentUserOrNull(context: Context): User? {
-        val username = Prefs.getPrefs(context).getString(USERNAME_KEY, null)
-        return userDao().findByName(username as String)
+        val username = Prefs.getPrefs(context).getString(USERNAME_KEY, null) ?: return null
+        return userDao().findByName(username)
     }
 
     companion object {

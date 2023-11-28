@@ -43,7 +43,7 @@ class LandingItemAdapter(private val context: Context, private val data: LiveDat
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = data.value?.get(position)
-        holder.nameText.text = item?.name ?: "null"
+        holder.nameText.text = "${item?.name} ($${item?.price})"
         holder.descriptionText.text = item?.description ?: "null"
 
         val db = AppDatabase.getInstance(context)

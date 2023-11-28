@@ -28,9 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Logged in: username"/>
-
             <View android:layout_weight="1" android:layout_height="0dp" android:layout_width="0dp"/>
-
             <Button
                 android:id="@+id/logout_button"
                 android:text="@string/logout"
@@ -52,6 +50,23 @@
             <Button
                 android:id="@+id/cart_button"
                 android:text="@string/cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/rename_account_button"
+                android:text="@string/rename_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+                        <View android:layout_weight="1" android:layout_height="0dp" android:layout_width="0dp"/>
+
+            <Button
+                android:id="@+id/delete_account_button"
+                android:text="@string/delete_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
