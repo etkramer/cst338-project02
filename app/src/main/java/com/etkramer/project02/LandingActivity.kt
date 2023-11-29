@@ -12,7 +12,6 @@ import com.etkramer.project02.db.AppDatabase
 class LandingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLandingBinding
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

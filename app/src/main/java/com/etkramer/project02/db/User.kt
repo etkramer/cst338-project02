@@ -18,7 +18,7 @@ data class User (
     val username: String,
     val password: String,
 
-    val balance: Int
+    val balance: Int,
 )
 
 @Dao
@@ -30,10 +30,13 @@ interface UserDao {
     fun delete(user: User)
 
     @Query("SELECT * FROM User WHERE id = :id")
-    fun findById(id: String): User?
+    fun findById(id: Int): User?
 
     @Query("SELECT * FROM User WHERE username = :username")
     fun findByName(username: String): User?
+
+    @Query("SELECT * FROM Product INNER JOIN UserProductEdge ON Product.id=UserProductEdge.productId WHERE userId = :id")
+    fun getCart(id: Int): LiveData<List<Product>>
 
     @Query("DELETE FROM User")
     fun deleteAll()
