@@ -72,7 +72,7 @@ class LandingActivity : AppCompatActivity() {
         }
 
         binding.cartButton.setOnClickListener {
-            // TODO: Impl
+            startActivity(CartActivity.getIntent(this))
         }
 
         val products = db.productDao().getAll()
