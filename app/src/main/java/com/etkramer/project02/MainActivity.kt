@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.etkramer.project02.databinding.ActivityMainBinding
+import com.etkramer.project02.db.AppDatabase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -15,8 +16,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (Prefs.getPrefs(this).getString(USERNAME_KEY, null) != null) { // Already logged in
+        val db = AppDatabase.getInstance(this)
+        if (db.getCurrentUserOrNull(this) != null) {
+            // Already logged in
             startActivity(LandingActivity.getIntent(this))
+        } else {
+            // Clear any saved username just in case
+            with (Prefs.getPrefs(this).edit()) {
+                putString("USERNAME_KEY", null)
+                apply()
+            }
         }
 
         binding.loginButton.setOnClickListener {

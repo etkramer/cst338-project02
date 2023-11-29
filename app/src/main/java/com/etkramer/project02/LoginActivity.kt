@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
             val username = binding.usernameInput.text.toString()
             val password = binding.passwordInput.text.toString()
 
-            val user = db.userDao().userByName(username)
+            val user = db.userDao().findByName(username)
             if (user == null || user.password != password) {
                 Toast.makeText(this, "Username or password was incorrect!", Toast.LENGTH_LONG)
                     .show()
