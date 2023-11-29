@@ -42,12 +42,15 @@ android {
 
 dependencies {
     val roomVersion = "2.6.0"
+    val fragmentVersion = "1.6.2"
 
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
     androidTestImplementation("androidx.room:room-testing:$roomVersion")
 
     ksp("androidx.room:room-compiler:$roomVersion")
+
+    implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
