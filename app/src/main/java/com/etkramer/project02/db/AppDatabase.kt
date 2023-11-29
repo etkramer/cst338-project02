@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 import com.etkramer.project02.Prefs
 import com.etkramer.project02.USERNAME_KEY
 
-@Database(entities = [User::class, Product::class, UserProductEdge::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Product::class, UserProductEdge::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun productDao(): ProductDao
@@ -26,6 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
             if (instance == null) {
                 // Build new db.
                 val db = Room.databaseBuilder(context, AppDatabase::class.java, "app-database")
+                    .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build()
 

@@ -35,7 +35,7 @@ interface UserDao {
     @Query("SELECT * FROM User WHERE username = :username")
     fun findByName(username: String): User?
 
-    @Query("SELECT * FROM Product INNER JOIN UserProductEdge ON Product.id=UserProductEdge.productId WHERE userId = :id")
+    @Query("SELECT * FROM Product LEFT JOIN UserProductEdge ON Product.id=UserProductEdge.productId WHERE userId = :id AND isInCart")
     fun getCart(id: Int): LiveData<List<Product>>
 
     @Query("DELETE FROM User")
