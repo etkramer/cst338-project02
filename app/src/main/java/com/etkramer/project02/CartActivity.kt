@@ -21,6 +21,10 @@ class CartActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             finish()
         }
+
+        binding.checkoutButton.setOnClickListener {
+            // TODO: Impl
+        }
     }
 
     companion object {

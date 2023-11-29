@@ -14,4 +14,5 @@
     <string name="rename_account">Rename account</string>
     <string name="go_back">Go back</string>
     <string name="cart">Cart</string>
+    <string name="check_out">Check out</string>
 </resources>
