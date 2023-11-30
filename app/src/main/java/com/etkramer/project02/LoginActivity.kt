@@ -1,9 +1,11 @@
 package com.etkramer.project02
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.widget.Toast
 import com.etkramer.project02.databinding.ActivityLoginBinding
 import com.etkramer.project02.db.AppDatabase
@@ -11,6 +13,7 @@ import com.etkramer.project02.db.AppDatabase
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,6 +44,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
             startActivity(LandingActivity.getIntent(this))
+        }
+
+        binding.autofillButton.setOnClickListener {
+            binding.usernameInput.setText("admin2");
+            binding.passwordInput.setText("admin2");
         }
     }
 
