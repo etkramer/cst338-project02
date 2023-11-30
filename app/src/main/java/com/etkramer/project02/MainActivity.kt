@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             startActivity(LoginActivity.getIntent(this))
         }
+
+        binding.registerButton.setOnClickListener {
+            startActivity(RegisterActivity.getIntent(this))
+        }
     }
 
     companion object {

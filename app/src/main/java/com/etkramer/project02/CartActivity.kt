@@ -58,7 +58,7 @@ class CartActivity : AppCompatActivity() {
                 db.userProductEdgeDao().insert(edge)
             }
 
-            Toast.makeText(this, "Checked out ${items.size} items for $${totalCost}", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Checked out ${items.size} items for $${totalCost}", Toast.LENGTH_LONG).show()
 
             finish()
             startActivity(LandingActivity.getIntent(this))
