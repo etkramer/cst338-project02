@@ -6,10 +6,15 @@
     <string name="password">Password</string>
     <string name="submit">Submit</string>
     <string name="logout">Log out</string>
-    <string name="cart">View cart</string>
+    <string name="view_cart">View cart</string>
     <string name="add_cart">Add to Cart</string>
     <string name="delete">Delete (admin)</string>
     <string name="delete_account">Delete account</string>
     <string name="change_username">Change username</string>
     <string name="rename_account">Rename account</string>
+    <string name="go_back">Go back</string>
+    <string name="cart">Cart</string>
+    <string name="check_out">Check out</string>
+    <string name="remove_from_cart">Remove from Cart</string>
+    <string name="autofill_admin">Autofill (admin2)</string>
 </resources>

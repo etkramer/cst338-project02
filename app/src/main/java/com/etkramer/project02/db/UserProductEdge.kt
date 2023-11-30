@@ -12,7 +12,7 @@ import androidx.room.Update
 @Entity
 data class UserProductEdge (
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id2: Int, // Temp hack to workaround join conflict
     val userId: Int,
     val productId: Int,
 
@@ -27,7 +27,7 @@ interface UserProductEdgeDao {
     @Update
     fun update(userProductEdge: UserProductEdge)
 
-    @Query("SELECT * FROM UserProductEdge WHERE id = :id")
+    @Query("SELECT * FROM UserProductEdge WHERE id2 = :id")
     fun findById(id: String): UserProductEdge?
 
     @Query("SELECT * FROM UserProductEdge WHERE userId = :userId AND productId = :productId")
