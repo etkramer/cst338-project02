@@ -11,6 +11,7 @@ import com.etkramer.project02.adapters.LandingItemAdapter
 import com.etkramer.project02.databinding.ActivityCartBinding
 import com.etkramer.project02.databinding.ActivityLoginBinding
 import com.etkramer.project02.db.AppDatabase
+import com.etkramer.project02.db.Product
 
 class CartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCartBinding
@@ -30,10 +31,37 @@ class CartActivity : AppCompatActivity() {
 
         binding.backButton.setOnClickListener {
             finish()
+            startActivity(MainActivity.getIntent(this))
         }
 
         binding.checkoutButton.setOnClickListener {
-            // TODO: Impl
+            val items = cart.value as List<Product>
+            val totalCost = items.sumOf { item -> item.price }
+
+            // Make sure cart is affordable
+            if (totalCost > currentUser.balance) {
+                Toast.makeText(this,
+                    "Can't afford items! Subtotal is $${totalCost} but your balance is only $${currentUser.balance}",
+                    Toast.LENGTH_LONG).show()
+
+                return@setOnClickListener
+            }
+
+            // Update balance
+            db.userDao().insert(currentUser.copy(balance = currentUser.balance - totalCost))
+
+            for (item in items)
+            {
+                val edge = db.userProductEdgeDao().findWithIds(currentUser.id, item.id)
+                    ?.copy(isInCart = false) ?: throw Exception()
+
+                db.userProductEdgeDao().insert(edge)
+            }
+
+            Toast.makeText(this, "Checked out ${items.size} items for $${totalCost}", Toast.LENGTH_LONG).show();
+
+            finish()
+            startActivity(LandingActivity.getIntent(this))
         }
     }
 
