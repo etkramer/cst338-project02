@@ -30,9 +30,12 @@ abstract class AppDatabase : RoomDatabase() {
                     .allowMainThreadQueries()
                     .build()
 
-                seedUsers(db)
-                seedProducts(db)
-                seedUserProductEdges(db)
+                // We don't have any seed data yet
+                if (db.productDao().getAllSync().isEmpty()) {
+                    seedUsers(db)
+                    seedProducts(db)
+                    seedUserProductEdges(db)
+                }
 
                 instance = db
                 return db.also { instance = db }

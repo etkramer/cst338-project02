@@ -35,6 +35,9 @@ interface ProductDao {
     @Query("SELECT * FROM Product")
     fun getAll(): LiveData<List<Product>>
 
+    @Query("SELECT * FROM Product")
+    fun getAllSync(): List<Product>
+
     @Query("DELETE FROM Product")
     fun deleteAll()
 }
